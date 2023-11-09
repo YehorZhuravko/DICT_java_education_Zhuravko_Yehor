@@ -32,6 +32,22 @@ public class ChatBot {
             counter += 1;
         }
 
+        // Тестирование от бота
+        System.out.println("Let's do a little test");
+        System.out.println("In what year was Kharkov Aerospace University founded?");
+        System.out.println("1. 1930 \n2. 1948 \n3. 1941 \n4. 1957");
+        int check = 0;
+        while(check == 0) {
+            int userChoice = scanner.nextInt();
+            if (userChoice == 1){
+                check = 1;
+                System.out.println("Completed, have a nice day!");
+            }
+            else {
+                System.out.println("Please, try again");
+            }
+        }
+
     }
 }
 
