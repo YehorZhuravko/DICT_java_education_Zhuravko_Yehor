@@ -1,7 +1,9 @@
 package Hangman;
 
+import java.util.HashSet;
 import java.util.Random;
 import java.util.Scanner;
+import java.util.Set;
 
 public class Hangman {
 
@@ -21,48 +23,59 @@ public class Hangman {
 
         int attemptsLeft = 8;
         Scanner scanner = new Scanner(System.in);
+        Set<Character> guessedLetters = new HashSet<>();
 
         while (attemptsLeft > 0) {
             System.out.print("Current word: ");
             displayWord(guessedWord);
             System.out.println("Attempts left: " + attemptsLeft);
-            System.out.print("Guess a letter: ");
-            char userGuess = scanner.next().charAt(0);
+            System.out.print("Input a letter: ");
+            String userInput = scanner.next().toLowerCase();
+
+            if (userInput.length() != 1 || !Character.isLetter(userInput.charAt(0))) {
+                System.out.println("You should input a single letter");
+                continue;
+            }
+
+            char userGuess = userInput.charAt(0);
+
+            if (userGuess < 'a' || userGuess > 'z') {
+                System.out.println("Please enter a lowercase English letter");
+                continue;
+            }
+
+            if (userGuessesLetter(guessedLetters, userGuess)) {
+                System.out.println("You've already guessed this letter");
+                continue;
+            }
+
+            guessedLetters.add(userGuess);
 
             if (containsLetter(secretWord, userGuess)) {
-                if (alreadyGuessed(guessedWord, userGuess)) {
-                    System.out.println("No improvements. You already guessed that letter.");
-                    attemptsLeft--;
-                } else {
-                    System.out.println("Good guess!");
-                    updateGuessedWord(secretWord, guessedWord, userGuess);
-                }
+                System.out.println("Good guess!");
+                updateGuessedWord(secretWord, guessedWord, userGuess);
             } else {
-                System.out.println("That letter doesn't appear in the word.");
+                System.out.println("That letter doesn't appear in the word");
                 attemptsLeft--;
             }
 
             if (isWordGuessed(guessedWord)) {
-                System.out.println("Congratulations! You guessed the word!");
+                System.out.println("You guessed the word " + secretWord + "!");
+                System.out.println("You survived!");
                 return;
             }
         }
 
         System.out.println("Thanks for playing! The secret word was: " + secretWord);
-        System.out.println("Let's see how well you do next time.");
+        System.out.println("You lost!");
     }
 
     public static boolean containsLetter(String word, char letter) {
         return word.indexOf(letter) != -1;
     }
 
-    public static boolean alreadyGuessed(char[] guessedWord, char letter) {
-        for (char c : guessedWord) {
-            if (c == letter) {
-                return true;
-            }
-        }
-        return false;
+    public static boolean userGuessesLetter(Set<Character> guessedLetters, char letter) {
+        return guessedLetters.contains(letter);
     }
 
     public static void updateGuessedWord(String secretWord, char[] guessedWord, char letter) {
@@ -89,4 +102,3 @@ public class Hangman {
         System.out.println();
     }
 }
-
