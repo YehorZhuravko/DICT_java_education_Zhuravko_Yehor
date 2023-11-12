@@ -1,5 +1,6 @@
 package Hangman;
 
+import java.util.Random;
 import java.util.Scanner;
 
 public class Hangman {
@@ -10,7 +11,10 @@ public class Hangman {
     }
 
     public static void playHangman() {
-        String secretWord = "java";
+        String[] wordList = {"python", "java", "javascript", "kotlin"};
+        Random random = new Random();
+        String secretWord = wordList[random.nextInt(wordList.length)];
+
         char[] guessedWord = new char[secretWord.length()];
         for (int i = 0; i < secretWord.length(); i++) {
             guessedWord[i] = '_';
@@ -24,7 +28,8 @@ public class Hangman {
         if (userGuess.equals(secretWord)) {
             System.out.println("You survived!");
         } else {
-            System.out.println("You lost!");
+            System.out.println("You lost! The correct word was: " + secretWord);
         }
     }
 }
+
