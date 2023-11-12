@@ -9,7 +9,24 @@ public class Hangman {
 
     public static void main(String[] args) {
         System.out.println("HANGMAN");
-        playHangman();
+        showMenu();
+    }
+
+    public static void showMenu() {
+        Scanner scanner = new Scanner(System.in);
+        while (true) {
+            System.out.print("Type \"Play\" to play the game, \"Exit\" to quit: ");
+            String choice = scanner.nextLine().trim().toLowerCase();
+
+            if (choice.equals("play")) {
+                playHangman();
+            } else if (choice.equals("exit")) {
+                System.out.println("Goodbye!");
+                break;
+            } else {
+                System.out.println("Invalid choice. Please type \"Play\" or \"Exit\".");
+            }
+        }
     }
 
     public static void playHangman() {
@@ -62,12 +79,11 @@ public class Hangman {
             if (isWordGuessed(guessedWord)) {
                 System.out.println("You guessed the word " + secretWord + "!");
                 System.out.println("You survived!");
-                return;
+                break;
             }
         }
 
         System.out.println("Thanks for playing! The secret word was: " + secretWord);
-        System.out.println("You lost!");
     }
 
     public static boolean containsLetter(String word, char letter) {
