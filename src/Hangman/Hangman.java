@@ -14,15 +14,11 @@ public class Hangman {
         String[] wordList = {"python", "java", "javascript", "kotlin"};
         Random random = new Random();
         String secretWord = wordList[random.nextInt(wordList.length)];
-
-        char[] guessedWord = new char[secretWord.length()];
-        for (int i = 0; i < secretWord.length(); i++) {
-            guessedWord[i] = '_';
-        }
+        String partialWord = getPartialWord(secretWord);
 
         Scanner scanner = new Scanner(System.in);
 
-        System.out.print("Guess the word: ");
+        System.out.print("Guess the word " + partialWord + ": ");
         String userGuess = scanner.next();
 
         if (userGuess.equals(secretWord)) {
@@ -30,6 +26,18 @@ public class Hangman {
         } else {
             System.out.println("You lost! The correct word was: " + secretWord);
         }
+    }
+
+    public static String getPartialWord(String word) {
+        char[] partialWordChars = new char[word.length()];
+        for (int i = 0; i < word.length(); i++) {
+            if (i < 2) {
+                partialWordChars[i] = word.charAt(i);
+            } else {
+                partialWordChars[i] = '-';
+            }
+        }
+        return new String(partialWordChars);
     }
 }
 
