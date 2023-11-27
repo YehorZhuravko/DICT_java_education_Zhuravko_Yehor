@@ -32,38 +32,49 @@ public class CoffeeMachine {
     static int totalBeans = beans;
     static int totalMoney = money;
     static int totalCups = cups;
+
     static Scanner scan;
+
     public static void main(String[] args) {
         scan = new Scanner(System.in);
         menu();
     }
-    public static void remaining() {
-        System.out.println("The coffee machine has: \n" +
-                totalWater +
-                " ml of water \n" +
-                totalMilk +
-                " ml of milk \n" +
-                totalBeans +
-                " of coffee beans \n" +
-                totalCups +
-                " of disposable cups \n" +
-                totalMoney +
-                " of money");
-    }
+
     private static void menu() {
         do {
             System.out.print("Write action (buy, fill, take, remaining, exit):\n> ");
             String menuUser = scan.nextLine();
-            switch (menuUser) {
-                case "buy" -> buy();
-                case "fill" -> fill();
-                case "take" -> take();
-                case "remaining" -> remaining();
-                case "exit" -> System.exit(0);
-                default -> System.out.println("ERROR ");
-            }
-        }while(true);
+            processUserInput(menuUser);
+        } while (true);
     }
+
+    private static void processUserInput(String input) {
+        processInput(input);
+    }
+
+    public static void processInput(String input) {
+        switch (input) {
+            case "buy":
+                buy();
+                break;
+            case "fill":
+                fill();
+                break;
+            case "take":
+                take();
+                break;
+            case "remaining":
+                remaining();
+                break;
+            case "exit":
+                System.exit(0);
+                break;
+            default:
+                System.out.println("ERROR");
+                break;
+        }
+    }
+
     private static void buy() {
         System.out.print("What do you want to buy? 1 - espresso, 2 - latte, 3 - cappuccino, back - to main menu:\n> ");
         String buyUser = scan.nextLine();
@@ -160,5 +171,19 @@ public class CoffeeMachine {
     public static void take() {
         System.out.println("I gave you " + totalMoney + "");
         totalMoney = 0;
+    }
+
+    public static void remaining() {
+        System.out.println("The coffee machine has: \n" +
+                totalWater +
+                " ml of water \n" +
+                totalMilk +
+                " ml of milk \n" +
+                totalBeans +
+                " of coffee beans \n" +
+                totalCups +
+                " of disposable cups \n" +
+                totalMoney +
+                " of money");
     }
 }
