@@ -47,8 +47,52 @@ public class TicTacToe {
             }
             if (choice <= 5){
                 if ((board.get("1 3").equals(board.get("2 3")) && board.get("2 3").equals(board.get("3 3")))
-                        != (board.get("1 3").equals(board.get(" ")) && board.get("2 3").equals(board.get(" ")) && board.get("3 3").equals(board.get(" ")))) {
-
+                        != (board.get("1 3").equals(board.get(" ")) && board.get("2 3").equals(board.get(" "))
+                        && board.get("3 3").equals(board.get(" ")))) {
+                    System.out.println(XO + " wins");
+                    scam = false;
+                }
+                if ((board.get("1 2").equals(board.get("2 2")) && board.get("2 2").equals(board.get("3 2")))
+                        != (board.get("1 2").equals(board.get(" ")) && board.get("2 2").equals(board.get(" "))
+                        && board.get("3 2").equals(board.get(" ")))) {
+                    System.out.println(XO + " wins");
+                    scam = false;
+                }
+                if ((board.get("1 1").equals(board.get("2 1")) && board.get("2 1").equals(board.get("3 1")))
+                        != (board.get("1 1").equals(board.get(" ")) && board.get("2 1").equals(board.get(" "))
+                        && board.get("3 1").equals(board.get(" ")))) {
+                    System.out.println(XO + " wins");
+                    scam = false;
+                }
+                if ((board.get("1 3").equals(board.get("1 2")) && board.get("1 2").equals(board.get("1 1")))
+                        != (board.get("1 3").equals(board.get(" ")) && board.get("1 2").equals(board.get(" "))
+                        && board.get("1 1").equals(board.get(" ")))) {
+                    System.out.println(XO + " wins");
+                    scam = false;
+                }
+                if ((board.get("2 3").equals(board.get("2 2")) && board.get("2 2").equals(board.get("2 1")))
+                        != (board.get("2 3").equals(board.get(" ")) && board.get("2 2").equals(board.get(" "))
+                        && board.get("2 1").equals(board.get(" ")))) {
+                    System.out.println(XO + " wins");
+                    scam = false;
+                }
+                if ((board.get("3 3").equals(board.get("2 3")) && board.get("2 3").equals(board.get("3 3")))
+                        != (board.get("1 3").equals(board.get(" ")) && board.get("2 3").equals(board.get(" "))
+                        && board.get("3 3").equals(board.get(" ")))) {
+                    System.out.println(XO + " wins");
+                    scam = false;
+                }
+                if ((board.get("1 3").equals(board.get("2 3")) && board.get("2 3").equals(board.get("3 3")))
+                        != (board.get("1 3").equals(board.get(" ")) && board.get("2 3").equals(board.get(" "))
+                        && board.get("3 3").equals(board.get(" ")))) {
+                    System.out.println(XO + " wins");
+                    scam = false;
+                }
+                if ((board.get("1 3").equals(board.get("2 3")) && board.get("2 3").equals(board.get("3 3")))
+                        != (board.get("1 3").equals(board.get(" ")) && board.get("2 3").equals(board.get(" "))
+                        && board.get("3 3").equals(board.get(" ")))) {
+                    System.out.println(XO + " wins");
+                    scam = false;
                 }
             }
 
